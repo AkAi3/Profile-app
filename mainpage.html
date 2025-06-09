@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AkAi's profile here!!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Base Styles & Variables */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #ff7f50;
+      --edit: #4ade80;
+      --delete: #e11d48;
+      --dark: #0f172a;
+      --light: #f1f5f9;
+      --card-bg: rgba(30, 41, 59, 0.8);
+      --transition: all 0.3s ease;
+      --social-twitter: #1DA1F2;
+      --social-github: #333;
+      --social-instagram: #E1306C;
+      --social-linkedin: #0077B5;
+      --social-youtube: #FF0000;
+    }
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: var(--light);
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(67, 97, 238, 0.1) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 127, 80, 0.1) 0%, transparent 40%);
+      z-index: -1;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #4ade80, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+    .subtitle {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .content-wrapper {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .main-content {
+      flex: 2;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .profile-photo {
+      flex: 1;
+      min-width: 300px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      transition: var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+    h2 {
+      color: #ffe4b5;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    #aboutText {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+      min-height: 100px;
+    }
+    /* Buttons & Interactive Elements */
+    .edit-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: var(--edit);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+    .edit-btn:hover { background: #16a34a; transform: translateY(-2px); }
+    .list-container { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .list-item {
+      background: rgba(255,228,181,0.1);
+      border: 1px solid rgba(255,228,181,0.2);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .list-item:hover { background: rgba(255,228,181,0.2); transform: translateY(-3px); }
+    .delete-btn {
+      position: absolute;
+      top: 0;
+      right: -40px;
+      width: 40px;
+      height: 100%;
+      background: var(--delete);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: right 0.3s ease;
+      border-radius: 0 50px 50px 0;
+    }
+    .list-item:hover .delete-btn { right: 0; }
+    .dropdown-form {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    input, textarea, select {
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(15,23,42,0.7);
+      color: white;
+      font-size: 1rem;
+      transition: var(--transition);
+      flex: 1;
+      min-width: 150px;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus, select:focus {
+      outline: none; border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67,97,238,0.3);
+    }
+    button {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    button:hover { background: #ff4500; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,127,80,0.4); }
+    .save-btn { background: var(--primary); }
+    .save-btn:hover { background: var(--secondary); }
+    .toggle-btn {
+      background: var(--primary);
+      width: 100%;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 1.1rem;
+      justify-content: center;
+    }
+    .toggle-btn:hover { background: var(--secondary); }
+    #photoControls { display: none; margin-top: 1rem; width: 100%; }
+    .control-wrapper { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
+    #profileImg {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+      transition: var(--transition);
+      margin-bottom: 1.5rem;
+    }
+    #profileImg:hover { transform: scale(1.05); border-color: var(--accent); }
+    .btn-group { display: flex; gap: 1rem; width: 100%; }
+    .btn-group button { flex: 1; justify-content: center; }
+    .upload-btn { background: var(--primary); }
+    .remove-btn { background: var(--delete); }
+    .upload-btn:hover { background: var(--secondary); }
+    .remove-btn:hover { background: #be123c; }
+    .social-btn {
+      background: var(--social-github);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      transition: var(--transition);
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      gap: 0.5rem;
+      min-width: 150px;
+    }
+    .social-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    .social-btn.twitter { background: var(--social-twitter); }
+    .social-btn.github { background: var(--social-github); }
+    .social-btn.instagram { background: var(--social-instagram); }
+    .social-btn.linkedin { background: var(--social-linkedin); }
+    .social-btn.youtube { background: var(--social-youtube); }
+    .social-form select { flex: 0 0 150px; }
+    .social-form input { flex: 2; }
+    .media-btn {
+      background: var(--accent);
+      width: 100%;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 1.1rem;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .media-btn:hover { background: #ff4500; transform: translateY(-3px); }
+    .fade-in { animation: fadeIn 0.8s ease forwards; }
+    .edit-mode { border: 1px solid rgba(74,222,128,0.3); box-shadow: 0 0 15px rgba(74,222,128,0.2); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .content-wrapper { flex-direction: column; }
+      .profile-photo { order: -1; }
+      h1 { font-size: 2.5rem; }
+      .dropdown-form, .btn-group { flex-direction: column; }
+      .edit-btn { position: relative; top: auto; right: auto; margin-top: 1rem; width: 100%; justify-content: center; }
+      .delete-btn { right: -35px; width: 35px; }
+      .social-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Interactive Profile</h1>
+      <p class="subtitle">HOBBY, PHOTO TRASH WAGERA WAGERA....</p>
+    </header>
+
+    <div class="content-wrapper">
+      <div class="main-content">
+        <!-- About Me Card -->
+        <div class="card fade-in">
+          <h2>About Me</h2>
+          <button class="edit-btn" id="aboutEditBtn">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <p id="aboutText">
+            I'm Shridhar and i freaking love art of all forms!!!
+          </p>
+          <div id="aboutEdit" style="display: none;">
+            <textarea id="aboutEditText" class="edit-mode"></textarea>
+            <div class="dropdown-form">
+              <button class="save-btn" onclick="saveAbout()">
+                <i class="fas fa-save"></i> Save
+              </button>
+              <button class="remove-btn" onclick="cancelAboutEdit()">
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hobbies Card -->
+        <div class="card fade-in">
+          <h2>My Hobbies</h2>
+          <ul class="list-container" id="hobbyList">
+            <li class="list-item">
+              <i class="fas fa-palette"></i> Painting
+              <button class="delete-btn" onclick="deleteItem(this, 'hobby')">
+                <i class="fas fa-trash"></i>
+              </button>
+            </li>
+            <li class="list-item">
+              <i class="fas fa-gamepad"></i> Gaming
+              <button class="delete-btn" onclick="deleteItem(this, 'hobby')">
+                <i class="fas fa-trash"></i>
+              </button>
+            </li>
+            <li class="list-item">
+              <i class="fas fa-book"></i> Reading
+              <button class="delete-btn" onclick="deleteItem(this, 'hobby')">
+                <i class="fas fa-trash"></i>
+              </button>
+            </li>
+            <li class="list-item">
+              <i class="fas fa-hiking"></i> Hiking
+              <button class="delete-btn" onclick="deleteItem(this, 'hobby')">
+                <i class="fas fa-trash"></i>
+              </button>
+            </li>
+          </ul>
+          <button class="toggle-btn" onclick="toggleForm('hobbyForm')">
+            <i class="fas fa-plus"></i> Add Hobby
+          </button>
+          <div id="hobbyForm" class="dropdown-form" style="display: none; margin-top: 1rem;">
+            <input type="text" id="newHobby" placeholder="Enter hobby..." />
+            <button onclick="addHobby()">
+              <i class="fas fa-plus"></i> Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Social Media Links Card -->
+        <div class="card fade-in">
+          <h2>Social Media Links</h2>
+          <div class="list-container" id="socialLinks">
+            <a href="https://github.com" target="_blank" class="social-btn github">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-btn instagram">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+          <button class="toggle-btn" onclick="toggleForm('socialForm')">
+            <i class="fas fa-plus"></i> Add Social Link
+          </button>
+          <div id="socialForm" class="dropdown-form" style="display: none; margin-top: 1rem;">
+            <select id="socialPlatform">
+              <option value="github">GitHub</option>
+              <option value="twitter">Twitter</option>
+              <option value="instagram">Instagram</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="youtube">YouTube</option>
+            </select>
+            <input type="url" id="socialUrl" placeholder="Enter profile URL..." />
+            <button onclick="addSocialLink()">
+              <i class="fas fa-plus"></i> Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Favorite Media Card -->
+        <div class="card fade-in">
+          <h2>Favorite Media</h2>
+          <button class="media-btn" onclick="goToMedia()">
+            <i class="fas fa-film"></i> Go to Media Collection
+          </button>
+        </div>
+      </div>
+
+      <!-- Profile Photo Card -->
+      <div class="profile-photo fade-in">
+        <h2>Profile Photo</h2>
+        <img id="profileImg" src="C:\Users\Shridhar\Desktop\profile app\90926a7f-e0fe-4ca8-acef-92efcea6f3c0.jpg" alt="Profile Photo" />
+        <button class="toggle-btn" onclick="togglePhotoControls()">
+          <i class="fas fa-camera"></i> Photo Options
+        </button>
+        <div id="photoControls">
+          <div class="control-wrapper">
+            <input type="file" id="photoInput" accept="image/*" />
+            <div class="btn-group">
+              <button class="upload-btn" onclick="uploadPhoto()">
+                <i class="fas fa-upload"></i> Upload
+              </button>
+              <button class="remove-btn" onclick="removePhoto()">
+                <i class="fas fa-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // About Me Editing
+    const aboutEditBtn = document.getElementById('aboutEditBtn'),
+          aboutText    = document.getElementById('aboutText'),
+          aboutEdit    = document.getElementById('aboutEdit'),
+          aboutEditText= document.getElementById('aboutEditText');
+
+    aboutEditBtn.addEventListener('click', () => {
+      aboutText.style.display = 'none';
+      aboutEdit.style.display = 'block';
+      aboutEditText.value = aboutText.innerText;
+      aboutEditText.focus();
+    });
+    function saveAbout() {
+      aboutText.innerText = aboutEditText.value;
+      aboutText.style.display = 'block';
+      aboutEdit.style.display = 'none';
+      showNotification('About Me updated successfully!');
+    }
+    function cancelAboutEdit() {
+      aboutText.style.display = 'block';
+      aboutEdit.style.display = 'none';
+    }
+    
+    // Toggle Forms (for hobbies and social links)
+    function toggleForm(formId) {
+      const form = document.getElementById(formId);
+      form.style.display = (form.style.display === 'flex') ? 'none' : 'flex';
+    }
+    
+    // Hobbies Functions
+    function addHobby() {
+      const input = document.getElementById('newHobby'),
+            value = input.value.trim();
+      if (value) {
+        const hobbyList = document.getElementById('hobbyList'),
+              li = document.createElement('li');
+        li.className = 'list-item';
+        li.innerHTML = `<i class="fas fa-star"></i> ${value}
+                        <button class="delete-btn" onclick="deleteItem(this, 'hobby')">
+                          <i class="fas fa-trash"></i>
+                        </button>`;
+        hobbyList.appendChild(li);
+        input.value = '';
+        showNotification(`Added "${value}" to hobbies!`);
+        toggleForm('hobbyForm');
+      }
+    }
+    function deleteItem(btn, type) {
+      const item = btn.closest('.list-item');
+      item.style.transform = 'scale(0.9)';
+      item.style.opacity = '0';
+      setTimeout(() => {
+        item.remove();
+        showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted!`);
+      }, 300);
+    }
+    
+    // Social Links Functions
+    function addSocialLink() {
+      const platform = document.getElementById('socialPlatform').value,
+            url = document.getElementById('socialUrl').value.trim();
+      if (url) {
+        const socialLinks = document.getElementById('socialLinks'),
+              btn = document.createElement('a');
+        btn.href = url;
+        btn.target = '_blank';
+        btn.className = `social-btn ${platform}`;
+        let iconClass, platformText;
+        switch(platform) {
+          case 'github':
+            iconClass = 'fab fa-github'; platformText = 'GitHub'; break;
+          case 'twitter':
+            iconClass = 'fab fa-twitter'; platformText = 'Twitter'; break;
+          case 'instagram':
+            iconClass = 'fab fa-instagram'; platformText = 'Instagram'; break;
+          case 'linkedin':
+            iconClass = 'fab fa-linkedin'; platformText = 'LinkedIn'; break;
+          case 'youtube':
+            iconClass = 'fab fa-youtube'; platformText = 'YouTube'; break;
+          default:
+            iconClass = 'fas fa-link'; platformText = 'Link';
+        }
+        btn.innerHTML = `<i class="${iconClass}"></i> ${platformText}`;
+        socialLinks.appendChild(btn);
+        document.getElementById('socialUrl').value = '';
+        showNotification(`Added ${platformText} link!`);
+        toggleForm('socialForm');
+      }
+    }
+    
+    // Photo Controls
+    function togglePhotoControls() {
+      const controls = document.getElementById('photoControls');
+      controls.style.display = controls.style.display === 'block' ? 'none' : 'block';
+    }
+    function uploadPhoto() {
+      const input = document.getElementById('photoInput'),
+            img   = document.getElementById('profileImg');
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          img.src = e.target.result;
+          showNotification('Profile photo updated!');
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    function removePhoto() {
+      const img = document.getElementById('profileImg');
+      img.src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=80";
+      document.getElementById('photoInput').value = '';
+      showNotification('Profile photo reset to default');
+    }
+    
+    // Media Navigation
+    function goToMedia() {
+      showNotification('Redirecting to media collection...');
+      setTimeout(() => {
+        // Adjust the URL as needed
+        window.location.href = "media/index.html";
+      }, 1500);
+    }
+    
+    // Notification System with Animated Keyframes
+    function showNotification(message) {
+      const existing = document.querySelector('.notification');
+      if (existing) existing.remove();
+      const notif = document.createElement('div');
+      notif.className = 'notification';
+      notif.textContent = message;
+      notif.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: rgba(30,41,59,0.95);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        animation: slideUp 0.5s ease forwards, fadeOut 0.5s ease 2.5s forwards;
+      `;
+      document.body.appendChild(notif);
+      setTimeout(() => {
+        if (notif.parentNode) notif.parentNode.removeChild(notif);
+      }, 3000);
+    }
+    // Inject keyframes for notifications
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideUp {
+        from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+        to { transform: translateX(-50%) translateY(0); opacity: 1; }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Dynamic Background Animation on Mousemove
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth,
+            y = e.clientY / window.innerHeight;
+      document.body.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(15,23,42,0.9), rgba(30,41,59,0.9))`;
+    });
+  </script>
+</body>
+</html>

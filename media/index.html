@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAVORITE Media Grid</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+    <div id="addNameSection" style="display:none; margin-top: 20px;">
+      <input type="text" id="mediaNameInput" placeholder="Enter media name"/>
+      <button onclick="submitMediaName()">Submit</button>
+    </div>
+
+      <h1>My Stash</h1>
+      <p class="subtitle">My favourite bits of media in no particular order (more to add)</p>
+    </header>
+
+    <button id="toggleSidebar"><i class="fas fa-plus"></i> Add Media</button>
+
+    <div id="sidebar" class="sidebar">
+      <div class="form-container">
+        <div class="form-row">
+          <label for="posterUrl"><i class="fas fa-image"></i> Image URL</label>
+          <input type="text" id="posterUrl" placeholder="Enter image URL...">
+          <label for="linkUrl"><i class="fas fa-link"></i> Link URL</label>
+          <input type="text" id="linkUrl" placeholder="Enter link URL...">
+        </div>
+        <button class="btn btn-primary" onclick="addPoster()">
+          <i class="fas fa-plus"></i> Add to Collection
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">RANDOM Collection go BRRRRRR!!</h2>
+    <div class="grid-container" id="grid"></div>
+  </div>
+
+  <div class="notification" id="notification">Item added!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

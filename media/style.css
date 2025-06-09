@@ -1,0 +1,217 @@
+:root {
+  --primary: #4361ee;
+  --secondary: #3f37c9;
+  --dark: #0f172a;
+  --light: #f1f5f9;
+  --danger: #e11d48;
+  --success: #10b981;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --transition: all 0.3s ease;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #0f172a, #1e293b);
+  color: var(--light);
+  min-height: 100vh;
+  padding: 20px;
+  transition: background 0.2s ease;
+}
+.container {
+  max-width: 1400px;
+  margin: auto;
+}
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(to right, #4ade80, #38bdf8);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+.subtitle {
+  color: #94a3b8;
+  margin-top: 10px;
+}
+#toggleSidebar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 320px;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  padding: 25px 20px;
+  z-index: 1000;
+  transition: left 0.3s ease;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+.sidebar.show {
+  left: 0;
+}
+.form-container {
+  padding: 10px;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+label {
+  font-weight: 500;
+  color: #cbd5e1;
+}
+input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ffffff1a;
+  background: rgba(15, 23, 42, 0.8);
+  color: white;
+}
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+}
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--secondary);
+}
+.section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 30px 0 15px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+.poster-container {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-bg);
+  aspect-ratio: 2/3;
+  transition: var(--transition);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+.poster-container:hover {
+  transform: translateY(-6px);
+  background: var(--card-hover);
+}
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+.poster-container:hover .poster {
+  opacity: 0.7;
+}
+.poster-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: var(--transition);
+}
+.poster-container:hover .poster-overlay {
+  opacity: 1;
+}
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-view {
+  background: var(--success);
+}
+.btn-edit {
+  background: var(--primary);
+}
+.btn-delete {
+  background: var(--danger);
+}
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: var(--success);
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateX(120%);
+  transition: transform 0.4s ease;
+  z-index: 9999;
+}
+.notification.show {
+  transform: translateX(0);
+}
+.notification.error {
+  background: var(--danger);
+}
+.empty-state {
+  text-align: center;
+  grid-column: 1 / -1;
+  padding: 40px 10px;
+  color: #94a3b8;
+}
